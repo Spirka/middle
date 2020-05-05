@@ -15,7 +15,7 @@ public class ThreadSleep {
                         Thread.sleep(3000);
                         System.out.println("Loaded.");
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        Thread.currentThread().interrupt();
                     }
                 }
         );
