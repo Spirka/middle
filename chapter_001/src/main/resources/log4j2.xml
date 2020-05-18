@@ -1,0 +1,28 @@
+<configuration>
+    <properties>
+        <property name="name_app_log">relay_time_test2</property>
+        <property name="pattern_app">
+            %d{yyyy-MM-dd HH:mm:ss} | %-5.5p | %-90l | %msg %ex%n
+        </property>
+    </properties>
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern_app}"/>
+        </Console>
+        <RollingFile name="AppRoll" fileName="logs/${name_app_log}.log" filePattern="logs/$${date:yyyy-MM-dd}/${name_app_log}-%d{yyyy_MM_dd HH-mm-ss}-%i.log">
+            <PatternLayout>
+                <pattern>${pattern_app}</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="5000"/>
+        </RollingFile>
+    </appenders>
+    <loggers>
+        <root level="all">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AppRoll"/>
+        </root>
+    </loggers>
+</configuration>
