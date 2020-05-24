@@ -2,9 +2,9 @@ package ru.job4j.concurrent.userstorage;
 
 import net.jcip.annotations.ThreadSafe;
 
-import javax.jws.soap.SOAPBinding;
-import java.util.*;
-import java.util.function.Function;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Class UserStorage
