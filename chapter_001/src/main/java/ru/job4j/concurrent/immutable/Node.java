@@ -7,6 +7,7 @@ package ru.job4j.concurrent.immutable;
  * @since 01.11.2020
  */
 public class Node<T> {
+
     private final Node next;
     private final T value;
 
