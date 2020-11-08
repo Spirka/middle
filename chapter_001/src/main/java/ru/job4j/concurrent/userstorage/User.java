@@ -10,10 +10,11 @@ import java.util.Objects;
  */
 public class User {
 
-    private int id;
-    private String name;
-    private int amount;
+    private final int id;
 
+    private final String name;
+
+    private int amount;
 
     public int getAmount() {
         return amount;

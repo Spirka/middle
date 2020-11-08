@@ -22,7 +22,7 @@ public class UserStorageTest {
         User second = new User(1, "Ivan", 100);
         userStorage.add(first);
         userStorage.update(second);
-        assertTrue(userStorage.getUser(second).equals(second));
+        assertEquals(userStorage.getUser(second), second);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class UserStorageTest {
         userStorage.add(first);
         userStorage.add(second);
         userStorage.delete(second);
-        assertTrue(userStorage.getUser(first).equals(first));
+        assertEquals(userStorage.getUser(first), first);
         assertEquals(1, userStorage.getCountOfUsers());
         assertFalse( userStorage.checkExistUserById(2));
     }
