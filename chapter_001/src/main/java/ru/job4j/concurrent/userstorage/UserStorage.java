@@ -1,5 +1,6 @@
 package ru.job4j.concurrent.userstorage;
 
+import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
 import java.util.HashMap;
@@ -15,7 +16,8 @@ import java.util.Set;
 @ThreadSafe
 public class UserStorage {
 
-    private Map<Integer, User> users = new HashMap<>();
+    @GuardedBy("this")
+    private final Map<Integer, User> users = new HashMap<>();
 
     public synchronized boolean add(User user) {
         boolean result = false;
@@ -39,7 +41,7 @@ public class UserStorage {
         return this.users.remove(user.getId(), user);
     }
 
-    public boolean transfer(int fromId, int toId, int amount) {
+    public synchronized boolean transfer(int fromId, int toId, int amount) {
         boolean result = false;
         User sender = this.users.get(fromId);
         User recipient = this.users.get(toId);
