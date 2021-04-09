@@ -25,3 +25,7 @@ notifications:
       - shustovakv@mail.ru
     on_success: never # default: change
     on_failure: always # default: always
+
+env:
+  global:
+    - CODECOV_TOKEN="7504f553-d35c-4511-b12d-09c38e7cd7a4"

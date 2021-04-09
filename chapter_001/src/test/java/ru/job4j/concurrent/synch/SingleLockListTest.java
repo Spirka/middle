@@ -5,8 +5,7 @@ import org.junit.Test;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 public class SingleLockListTest {
@@ -23,6 +22,6 @@ public class SingleLockListTest {
         Set<Integer> rsl = new TreeSet<>();
         list.iterator().forEachRemaining(rsl::add);
         Set<Integer> expected = Set.of(1, 2);
-        assertThat(rsl, is(expected));
+        assertEquals(rsl, expected);
     }
 }
