@@ -22,3 +22,8 @@ classes/
 out/
 
 /target/
+/chapter_001/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+/chapter_001/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+/chapter_001/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+/chapter_001/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+/chapter_001/target/jacoco.exec
