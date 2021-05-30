@@ -1,5 +1,6 @@
 package ru.job4j.concurrent.filedownload;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,9 +15,9 @@ import java.net.URL;
  * @author Kseniya Dergunova
  * @since 05.05.2020
  */
+@Slf4j
 public class FileDownload implements Runnable {
 
-    private static final Logger LOG = LogManager.getLogger(FileDownload.class);
     private final String fileURL;
     private final int speed;
 
@@ -31,11 +32,11 @@ public class FileDownload implements Runnable {
     }
 
     private void download(String fileURL, int speed) {
-        LOG.info("Зашли в download");
+        log.info("Зашли в download");
         System.out.println(fileURL + " " + speed);
         try (BufferedInputStream inputStream = new BufferedInputStream(new URL(this.fileURL).openStream());
              FileOutputStream out = new FileOutputStream("/tmp/pom_tmp.xml")) {
-            LOG.info("Начинаем скачивать");
+            log.info("Начинаем скачивать");
             byte[] data = new byte[1024];
             int bytesRead;
             System.out.println("Загрузка началась...");
@@ -53,7 +54,7 @@ public class FileDownload implements Runnable {
                     e.printStackTrace();
                 }
             }
-            LOG.info("Загрузка завершена!");
+            log.info("Загрузка завершена!");
         } catch (IOException e) {
             e.printStackTrace();
         }
