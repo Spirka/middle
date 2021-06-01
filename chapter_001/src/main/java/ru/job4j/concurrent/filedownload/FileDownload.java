@@ -1,8 +1,8 @@
 package ru.job4j.concurrent.filedownload;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
@@ -18,6 +18,7 @@ import java.net.URL;
 @Slf4j
 public class FileDownload implements Runnable {
 
+//    private static final Logger log = LoggerFactory.getLogger(FileDownload.class);
     private final String fileURL;
     private final int speed;
 
