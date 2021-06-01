@@ -25,23 +25,23 @@ public class SimpleBlockingQueue<T> {
     }
 
     public synchronized void offer(T value) throws InterruptedException {
-            while (this.queue.size() >= this.maxQueueSize) {
+            while (queue.size() >= this.maxQueueSize) {
                     this.wait();
             }
-            this.queue.add(value);
+            queue.add(value);
             this.notifyAll();
     }
 
     synchronized T poll() throws InterruptedException {
-        while (this.queue.isEmpty()) {
+        while (queue.isEmpty()) {
             this.wait();
         }
-        T result = this.queue.poll();
+        T result = queue.poll();
         this.notifyAll();
         return result;
     }
 
     public synchronized boolean isEmpty() {
-        return this.queue.isEmpty();
+        return queue.isEmpty();
     }
 }
