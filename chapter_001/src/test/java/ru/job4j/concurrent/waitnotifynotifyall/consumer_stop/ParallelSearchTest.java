@@ -12,14 +12,13 @@ class ParallelSearchTest {
     public void whenReturnElementFromQueue() throws InterruptedException {
         SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(2);
         List<Integer> numbers = new LinkedList<>();
-        Thread producer = new Thread(()-> {
+        Thread producer = new Thread(() -> {
             try {
                 queue.offer(1);
                 queue.offer(2);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
         });
         Thread consumer = new Thread(() -> {
             try {
@@ -33,6 +32,6 @@ class ParallelSearchTest {
         producer.join();
         consumer.start();
         consumer.join();
-        assertEquals(numbers, new LinkedList<>(List.of(1,2)));
+        assertEquals(numbers, new LinkedList<>(List.of(1, 2)));
     }
 }

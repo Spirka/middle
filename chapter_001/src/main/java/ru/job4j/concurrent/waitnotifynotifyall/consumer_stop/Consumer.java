@@ -20,7 +20,7 @@ public class Consumer<T> implements Runnable {
 
     @Override
     public void run() {
-        while (!this.queue.isEmpty() || !Thread.currentThread().isInterrupted()) {
+        while (this.queue.isEmpty() || !Thread.currentThread().isInterrupted()) {
             try {
                 T element = this.queue.poll();
                 list.add(element);

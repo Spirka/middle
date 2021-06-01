@@ -19,36 +19,29 @@ public class SimpleBlockingQueue<T> {
 
     @GuardedBy("this")
     private final int maxQueueSize;
-    private final Object monitor = this;
 
     public SimpleBlockingQueue(int maxQueueSize) {
         this.maxQueueSize = maxQueueSize;
     }
 
-    public void offer(T value) throws InterruptedException {
-        if (value == null) {
-            return;
-        }
-        synchronized (this) {
-            while (queue.size() >= maxQueueSize) {
-                monitor.wait();
+    public synchronized void offer(T value) throws InterruptedException {
+            while (this.queue.size() >= this.maxQueueSize) {
+                    this.wait();
             }
-            queue.add(value);
-            monitor.notifyAll();
-        }
+            this.queue.add(value);
+            this.notifyAll();
     }
 
     synchronized T poll() throws InterruptedException {
-        T result;
-        while (queue.isEmpty()) {
-            monitor.wait();
+        while (this.queue.isEmpty()) {
+            this.wait();
         }
-        result = queue.poll();
-        monitor.notifyAll();
+        T result = this.queue.poll();
+        this.notifyAll();
         return result;
     }
 
     public synchronized boolean isEmpty() {
-        return queue.isEmpty();
+        return this.queue.isEmpty();
     }
 }
