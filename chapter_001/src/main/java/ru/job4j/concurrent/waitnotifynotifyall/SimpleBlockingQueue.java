@@ -16,25 +16,36 @@ public class SimpleBlockingQueue<T> {
 
     @GuardedBy("this")
     private final Queue<T> queue = new LinkedList<>();
+    private final int size;
 
-    synchronized void offer(T value) {
-        if (value == null) {
-            return;
-        }
-        this.queue.offer(value);
-        notify();
+    public SimpleBlockingQueue(int size) {
+        this.size = size;
     }
 
-    synchronized T poll() {
-        while (this.queue.size() == 0) {
+    public synchronized void offer(T value) {
+        while (queue.size() >= size) {
             try {
-                System.out.println("Ждем когда очередь заполнится...");
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                e.printStackTrace();
+            }
+        }
+        queue.offer(value);
+        notifyAll();
+    }
+
+    public synchronized T poll() {
+        T result;
+        while (queue.isEmpty()) {
+            try {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("Очередь заполнилась! Можем брать");
-        return this.queue.poll();
+        result = queue.poll();
+        notifyAll();
+        return result;
     }
 }

@@ -1,25 +1,25 @@
-package ru.job4j.concurrent;
+package ru.job4j.concurrent.threads;
 
 /**
- * Class Wget
+ * Class ThreadSleep
  *
  * @author Kseniya Dergunova
  * @since 05.04.2020
  */
-public class Wget {
+public class ThreadSleep {
     public static void main(String[] args) {
         Thread thread = new Thread(
                 () -> {
                     try {
-                        for (int index = 0; index < 101; index++) {
-                            Thread.sleep(1000);
-                            System.out.print("\rLoading : " + index  + "%");
-                        }
+                        System.out.println("Start loading ... ");
+                        Thread.sleep(3000);
+                        System.out.println("Loaded.");
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                     }
                 }
         );
         thread.start();
+        System.out.println("Main");
     }
 }

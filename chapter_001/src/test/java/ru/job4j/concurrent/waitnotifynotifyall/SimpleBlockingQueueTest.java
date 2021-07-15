@@ -6,7 +6,7 @@ class SimpleBlockingQueueTest {
 
     @Test
     void offer() throws InterruptedException {
-        SimpleBlockingQueue<Integer> testQueue = new SimpleBlockingQueue<>();
+        SimpleBlockingQueue<Integer> testQueue = new SimpleBlockingQueue<>(1);
         Thread producer = new Thread(
                 () -> {
                     System.out.println(Thread.currentThread().getName() + " started");
@@ -39,7 +39,7 @@ class SimpleBlockingQueueTest {
 
     @Test
     void poll() throws InterruptedException {
-        SimpleBlockingQueue<Integer> testQueue = new SimpleBlockingQueue<>();
+        SimpleBlockingQueue<Integer> testQueue = new SimpleBlockingQueue<>(1);
         Thread consumer = new Thread(
                 () -> {
                     System.out.println(Thread.currentThread().getName() + " started");

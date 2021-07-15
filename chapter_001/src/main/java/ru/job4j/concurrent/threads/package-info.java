@@ -5,4 +5,4 @@
  * @version $Id$
  * @since 05.04.2020
  */
-package ru.job4j.concurrent;
+package ru.job4j.concurrent.threads;
