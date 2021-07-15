@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Class Cache
  *
  * @author Kseniya Dergunova
- * @since 01.06.2021
+ * @since 15.06.2021
  */
 public class Cache {
 
@@ -18,10 +18,21 @@ public class Cache {
     }
 
     public boolean update(Base model) {
-        memory.computeIfAbsent(model.getVersion() == memory.get())
+        return memory.computeIfPresent(model.getId(), (key, value) -> {
+            if (value.getVersion() != model.getVersion()) {
+                throw new OptimisticException("Versions are not equal");
+            }
+            Base updated = new Base(key, value.getVersion() + 1);
+            updated.setName(model.getName());
+            return updated;
+        }) != null;
     }
 
     public void delete(Base model) {
-        /* TODO impl */
+            memory.remove(model.getId());
+    }
+
+    public Base get(Integer key) {
+        return memory.get(key);
     }
 }

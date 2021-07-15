@@ -1,5 +1,8 @@
 package ru.job4j.concurrent.non_block;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Class Main
  *
@@ -12,10 +15,10 @@ public class Main {
         Base base = new Base(1, 0);
         map.put(base.getId(), base);
 
-        Base user1 = map.get(base);
+        Base user1 = map.get(base.getId());
         user1.setName("User 1");
 
-        Base user2 = map.get(base);
+        Base user2 = map.get(base.getId());
         user1.setName("User 2");
 
         map.put(user1.getId(), user1);
