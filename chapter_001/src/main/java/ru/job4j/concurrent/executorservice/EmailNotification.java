@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
 @Log4j2
 public class EmailNotification {
 
-    ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    private final ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     /**
      *  Метод берет данные пользователя и подставляет в шаблон.
@@ -53,6 +53,4 @@ public class EmailNotification {
      */
     public void send(String subject, String body, String email) {
     }
-
-
 }
