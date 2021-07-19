@@ -2,8 +2,7 @@ package ru.job4j.concurrent.jcip;
 
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class CountTest  {
 
@@ -35,6 +34,6 @@ public class CountTest  {
         first.join();
         second.join();
         /* Проверяем результат. */
-        assertThat(count.get(), is(2));
+        assertEquals(count.get(), 2);
     }
 }
