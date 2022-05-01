@@ -13,10 +13,10 @@ import java.util.List;
  * @since 23.05.2020
  */
 @ThreadSafe
-public class SingleLockList<T> implements Iterable {
+public class SingleLockList<T> implements Iterable<T> {
 
     @GuardedBy(value = "this")
-    SimpleArrayList<T> simpleArrayList = new SimpleArrayList(16);
+    SimpleArrayList<T> simpleArrayList = new SimpleArrayList<>(16);
 
     public synchronized void add(T value) {
         simpleArrayList.add(value);

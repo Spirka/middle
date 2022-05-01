@@ -1,6 +1,6 @@
 package ru.job4j.concurrent.executorservice;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
  * @author Kseniya Dergunova
  * @since 17.07.2021
  */
-@Log4j2
+@Slf4j
 public class EmailNotification {
 
     private final ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
